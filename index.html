@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>let’s talk, properly.</title>
+<style>
+  :root{
+    --bg:#fdf6ef;
+    --card:#fffdf8;
+    --ink:#3f3a36;
+    --muted:#8a7f76;
+    --accent:#c98b7a;
+    --accent2:#e7c3b8;
+    --line:#eadfd6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .wrap{
+    width:100%;
+    max-width:640px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 20px 60px rgba(63,58,54,.08);
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  h1{
+    font-size:30px;
+    line-height:1.15;
+    margin:0 0 12px;
+    font-weight:700;
+  }
+  p.lead{
+    color:var(--muted);
+    line-height:1.6;
+    margin:0 0 24px;
+  }
+  .btn{
+    display:inline-block;
+    border:0;
+    background:var(--ink);
+    color:#fff;
+    padding:14px 22px;
+    border-radius:999px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .screen{display:none}
+  .screen.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .characters{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    justify-content:center;
+    margin:18px 0 22px;
+  }
+  .char{
+    width:120px;
+    height:150px;
+    border-radius:18px;
+    background:var(--accent2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:44px;
+  }
+  .question{
+    font-size:20px;
+    font-weight:650;
+    margin:0 0 14px;
+  }
+  textarea{
+    width:100%;
+    min-height:150px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+    font-size:15px;
+    font-family:inherit;
+    background:#fff;
+    color:var(--ink);
+    resize:vertical;
+  }
+  textarea:focus{outline:2px solid var(--accent2);border-color:var(--accent2)}
+  .hint{
+    font-size:13px;
+    color:var(--muted);
+    margin:10px 0 18px;
+  }
+  .progress{
+    height:6px;
+    background:var(--line);
+    border-radius:999px;
+    overflow:hidden;
+    margin-bottom:22px;
+  }
+  .bar{
+    height:100%;
+    width:0%;
+    background:var(--accent);
+    transition:width .3s ease;
+  }
+  .nav{
+    display:flex;
+    gap:10px;
+    justify-content:space-between;
+    margin-top:8px;
+  }
+  .ending{
+    text-align:center;
+  }
+  .ending h2{
+    font-size:26px;
+    margin:0 0 10px;
+  }
+  .ending p{
+    color:var(--muted);
+    line-height:1.6;
+    margin:0 0 22px;
+  }
+  .heart{
+    font-size:34px;
+    margin-bottom:10px;
+  }
+  .footer{
+    margin-top:24px;
+    font-size:12px;
+    color:var(--muted);
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Opening -->
+  <section class="screen active" id="screen-0">
+    <div class="eyebrow">a little space</div>
+    <h1>hey.</h1>
+    <p class="lead">i made this because i care about us.<br>no pressure, no test—just a few honest thoughts.</p>
+    <button class="btn" onclick="next()">start</button>
+  </section>
+
+  <!-- Characters -->
+  <section class="screen" id="screen-1">
+    <div class="eyebrow">two people, one conversation</div>
+    <div class="characters">
+      <div class="char">🧑‍🦱</div>
+      <div class="char">👩‍🦰</div>
+    </div>
+    <h1>let’s talk, properly.</h1>
+    <p class="lead">answer whatever feels right.<br>you can write as much or as little as you want.</p>
+    <button class="btn" onclick="next()">continue</button>
+  </section>
+
+  <!-- Questions -->
+  <section class="screen" id="screen-questions">
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <p class="question" id="q-text"></p>
+    <textarea id="answer" placeholder="write here…"></textarea>
+    <p class="hint">optional—write only if you want to.</p>
+    <div class="nav">
+      <button class="btn ghost" onclick="prev()">back</button>
+      <button class="btn" onclick="next()">next</button>
+    </div>
+  </section>
+
+  <!-- Ending -->
+  <section class="screen" id="screen-end">
+    <div class="ending">
+      <div class="heart">🤍</div>
+      <h2>thank you for being honest.</h2>
+      <p>i’m listening.<br>let’s keep remembering the good things, and keep understanding each other.</p>
+      <button class="btn" onclick="restart()">done</button>
+    </div>
+  </section>
+
+  <div class="footer">made with care.</div>
+</div>
+
+<script>
+const questions = [
+  "What’s one thing you appreciate about us?",
+  "When do you feel most understood by me?",
+  "What’s something you wish we did more often?",
+  "When something bothers you, what helps you feel heard?",
+  "What’s one small thing I could do differently?",
+  "What’s one thing you want us to protect in this relationship?",
+  "Is there anything you’ve been wanting to say but haven’t said yet?",
+  "What’s one small thing that would make you feel closer to me?",
+  "What’s one thing you want me to remember about us?"
+];
+
+let index = 0;
+const answers = {};
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function next(){
+  if(index === 0){ index = 1; show('screen-1'); return; }
+  if(index === 1){ index = 2; renderQuestion(); return; }
+  if(index >= 2 && index < questions.length + 2){
+    saveAnswer();
+    index++;
+    if(index === questions.length + 2){ show('screen-end'); return; }
+    renderQuestion();
+  }
+}
+
+function prev(){
+  if(index <= 2){ index = 1; show('screen-1'); return; }
+  saveAnswer();
+  index--;
+  renderQuestion();
+}
+
+function renderQuestion(){
+  show('screen-questions');
+  document.getElementById('q-text').textContent = questions[index - 2];
+  document.getElementById('answer').value = answers[index - 2] || "";
+  document.getElementById('bar').style.width = ((index - 1) / (questions.length + 1) * 100) + "%";
+}
+
+function saveAnswer(){
+  answers[index - 2] = document.getElementById('answer').value.trim();
+}
+
+function restart(){
+  index = 0;
+  show('screen-0');
+}
+</script>
+</body>
+</html>
