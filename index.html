@@ -6,13 +6,13 @@
 <title>let’s talk, properly.</title>
 <style>
   :root{
-    --bg:#fdf6ef;
-    --card:#fffdf8;
-    --ink:#3f3a36;
-    --muted:#8a7f76;
-    --accent:#c98b7a;
-    --accent2:#e7c3b8;
-    --line:#eadfd6;
+    --bg:#f7f4ef;
+    --card:#ffffff;
+    --ink:#1c1b19;
+    --muted:#6f6a63;
+    --accent:#1c1b19;
+    --line:#e6e1da;
+    --soft:#efe9e2;
   }
   *{box-sizing:border-box}
   body{
@@ -28,40 +28,41 @@
   }
   .wrap{
     width:100%;
-    max-width:640px;
+    max-width:720px;
     background:var(--card);
     border:1px solid var(--line);
-    border-radius:24px;
-    padding:32px;
-    box-shadow:0 20px 60px rgba(63,58,54,.08);
+    border-radius:28px;
+    padding:36px;
+    box-shadow:0 24px 70px rgba(28,27,25,.10);
   }
   .eyebrow{
     font-size:12px;
-    letter-spacing:.18em;
+    letter-spacing:.22em;
     text-transform:uppercase;
     color:var(--muted);
-    margin-bottom:14px;
+    margin-bottom:16px;
   }
   h1{
-    font-size:30px;
-    line-height:1.15;
-    margin:0 0 12px;
-    font-weight:700;
+    font-size:34px;
+    line-height:1.1;
+    margin:0 0 14px;
+    font-weight:750;
   }
   p.lead{
     color:var(--muted);
-    line-height:1.6;
-    margin:0 0 24px;
+    line-height:1.65;
+    margin:0 0 26px;
+    font-size:16px;
   }
   .btn{
     display:inline-block;
     border:0;
     background:var(--ink);
     color:#fff;
-    padding:14px 22px;
+    padding:15px 26px;
     border-radius:999px;
     font-size:15px;
-    font-weight:600;
+    font-weight:650;
     cursor:pointer;
     transition:.2s ease;
   }
@@ -73,58 +74,49 @@
   }
   .screen{display:none}
   .screen.active{display:block;animation:fade .35s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .characters{
-    display:flex;
-    gap:18px;
-    align-items:center;
-    justify-content:center;
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .hero-img{
+    width:100%;
+    max-height:320px;
+    object-fit:cover;
+    border-radius:20px;
     margin:18px 0 22px;
-  }
-  .char{
-    width:120px;
-    height:150px;
-    border-radius:18px;
-    background:var(--accent2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:44px;
+    background:var(--soft);
   }
   .question{
-    font-size:20px;
-    font-weight:650;
-    margin:0 0 14px;
+    font-size:22px;
+    font-weight:700;
+    margin:0 0 16px;
   }
   textarea{
     width:100%;
-    min-height:150px;
+    min-height:170px;
     border:1px solid var(--line);
-    border-radius:16px;
-    padding:16px;
+    border-radius:18px;
+    padding:18px;
     font-size:15px;
     font-family:inherit;
     background:#fff;
     color:var(--ink);
     resize:vertical;
   }
-  textarea:focus{outline:2px solid var(--accent2);border-color:var(--accent2)}
+  textarea:focus{outline:2px solid var(--ink);border-color:var(--ink)}
   .hint{
     font-size:13px;
     color:var(--muted);
-    margin:10px 0 18px;
+    margin:10px 0 20px;
   }
   .progress{
     height:6px;
     background:var(--line);
     border-radius:999px;
     overflow:hidden;
-    margin-bottom:22px;
+    margin-bottom:24px;
   }
   .bar{
     height:100%;
     width:0%;
-    background:var(--accent);
+    background:var(--ink);
     transition:width .3s ease;
   }
   .nav{
@@ -137,20 +129,20 @@
     text-align:center;
   }
   .ending h2{
-    font-size:26px;
-    margin:0 0 10px;
+    font-size:28px;
+    margin:0 0 12px;
   }
   .ending p{
     color:var(--muted);
-    line-height:1.6;
-    margin:0 0 22px;
+    line-height:1.65;
+    margin:0 0 24px;
   }
   .heart{
-    font-size:34px;
-    margin-bottom:10px;
+    font-size:36px;
+    margin-bottom:12px;
   }
   .footer{
-    margin-top:24px;
+    margin-top:26px;
     font-size:12px;
     color:var(--muted);
     text-align:center;
@@ -171,10 +163,7 @@
   <!-- Characters -->
   <section class="screen" id="screen-1">
     <div class="eyebrow">two people, one conversation</div>
-    <div class="characters">
-      <div class="char">🧑‍🦱</div>
-      <div class="char">👩‍🦰</div>
-    </div>
+    <img class="hero-img" src="couple.png" alt="two people standing facing each other" />
     <h1>let’s talk, properly.</h1>
     <p class="lead">answer whatever feels right.<br>you can write as much or as little as you want.</p>
     <button class="btn" onclick="next()">continue</button>
@@ -195,7 +184,7 @@
   <!-- Ending -->
   <section class="screen" id="screen-end">
     <div class="ending">
-      <div class="heart">🤍</div>
+      <div class="heart">🖤</div>
       <h2>thank you for being honest.</h2>
       <p>i’m listening.<br>let’s keep remembering the good things, and keep understanding each other.</p>
       <button class="btn" onclick="restart()">done</button>
@@ -204,6 +193,19 @@
 
   <div class="footer">made with care.</div>
 </div>
+
+<!-- Formspree form -->
+<form id="real-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display:none">
+  <input type="hidden" name="q1" id="f-q1">
+  <input type="hidden" name="q2" id="f-q2">
+  <input type="hidden" name="q3" id="f-q3">
+  <input type="hidden" name="q4" id="f-q4">
+  <input type="hidden" name="q5" id="f-q5">
+  <input type="hidden" name="q6" id="f-q6">
+  <input type="hidden" name="q7" id="f-q7">
+  <input type="hidden" name="q8" id="f-q8">
+  <input type="hidden" name="q9" id="f-q9">
+</form>
 
 <script>
 const questions = [
@@ -232,7 +234,11 @@ function next(){
   if(index >= 2 && index < questions.length + 2){
     saveAnswer();
     index++;
-    if(index === questions.length + 2){ show('screen-end'); return; }
+    if(index === questions.length + 2){
+      submitAnswers();
+      show('screen-end');
+      return;
+    }
     renderQuestion();
   }
 }
@@ -253,6 +259,13 @@ function renderQuestion(){
 
 function saveAnswer(){
   answers[index - 2] = document.getElementById('answer').value.trim();
+}
+
+function submitAnswers(){
+  for(let i=0;i<questions.length;i++){
+    document.getElementById('f-q'+(i+1)).value = answers[i] || "";
+  }
+  document.getElementById('real-form').submit();
 }
 
 function restart(){
